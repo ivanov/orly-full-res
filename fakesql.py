@@ -43,7 +43,7 @@ class SQLMagic(Magics):
     @completer_for('sql')
     def completer_for_sql(self, line, cell, offset):
         from IPython.core.completer import Completion
-        previous = line+'\n'+cell[:offset].split()[-1]
+        previous = (line+'\n'+cell)[:offset].split()[-1]
         for c in SQLCompleter.find_matches(previous, self.comp.all_completions):
             yield Completion(offset+c.start_position, offset, c.text)
 
